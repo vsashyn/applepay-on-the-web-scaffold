@@ -10,7 +10,7 @@ require('dotenv').config();
 const privateKey  = fs.readFileSync('./sslcert/key.pem', 'utf8'); // https
 const certificate = fs.readFileSync('./sslcert/cert.pem', 'utf8'); // https
 const credentials = {key: privateKey, cert: certificate};
-const MERCHANT_ID_CERT = fs.readFileSync('./sslcert/validate-merchant-cert.p12', 'utf8');
+const MERCHANT_ID_CERT = fs.readFileSync('./sslcert/validate-merchant-cert.p12');
 const STORE_NAME = 'store name'
 
 const app = express();
@@ -49,7 +49,7 @@ app.post('/validate', (req, res) => {
       'content-type': 'application/json',
     },
     agentOptions: {
-      pfx: fs.readFileSync(MERCHANT_ID_CERT),
+      pfx: MERCHANT_ID_CERT,
       passphrase: process.env.MERCHANT_ID_CERT_PASS,
     },
     json: {
