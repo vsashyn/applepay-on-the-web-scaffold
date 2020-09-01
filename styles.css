@@ -1,0 +1,4 @@
+#applePay {
+  display: inline-block;
+  -webkit-appearance: -apple-pay-button;
+}
